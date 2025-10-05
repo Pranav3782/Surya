@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Surya's Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Container for the entire app -->
+    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header and Navigation -->
+        <header class="flex justify-between items-center mb-12 md:mb-16">
+            <a href="index.html" class="font-heading text-2xl">Surya.</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="blog.html" class="nav-link active">Blogs</a>
+                <a href="exp.html" class="nav-link">Experiments</a>
+            </nav>
+            <a href="index.html#contact" class="hidden md:inline-block custom-btn font-bold py-2 px-6">Contact Me</a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden z-30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </header>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#FDF8F0] transform -translate-x-full transition-transform duration-300 ease-in-out z-20 md:hidden">
+            <nav class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="index.html" class="nav-link text-2xl">Home</a>
+                <a href="blog.html" class="nav-link text-2xl">Blogs</a>
+                <a href="exp.html" class="nav-link text-2xl">Experiments</a>
+                <a href="index.html#contact" class="custom-btn font-bold py-3 px-8 text-xl" onclick="closeMenu()">Contact Me</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <main>
+            <section id="blog">
+                <div class="text-center mb-12">
+                    <h1 class="text-5xl font-heading mb-4">My Story Corner</h1><br>
+                    <!-- <p class="text-gray-600 max-w-2xl mx-auto">Exploring ideas in business, technology, and life. A collection of thoughts, findings, and deep dives.</p> -->
+                    <div class="mt-6 flex justify-center gap-2 md:gap-4" id="filter-buttons">
+                        <!-- Added data-filter attributes and a common class "filter-btn" -->
+                        <button class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" data-filter="all">All Posts</button>
+                        <button class="filter-btn custom-btn text-sm md:text-base font-bold py-2 px-5" data-filter="thoughts">Thoughts</button>
+                        <button class="filter-btn custom-btn text-sm md:text-base font-bold py-2 px-5" data-filter="Insights">Insights</button>
+                        
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Blog Post 1: Ventures -->
+                    <!-- Added data-category attribute and a common class "blog-post" -->
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">The Java Input Buffer Problem Explained with a Dosa Story</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sep 16, 2025</p>
+                        <p class="text-gray-700 flex-grow">When I first came across the Input Buffer Problem in Java, it felt confusing. Why would my program suddenly skip inputs when I was clearly typing them?....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/%EF%B8%8F-the-java-input-buffer-problem-explained-with-a-dosa-story-f36313ca5877" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+                    
+                    <!-- Blog Post 2: Builds -->
+                     <!-- Added data-category attribute and a common class "blog-post" -->
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="Insights">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Tech" to "Builds" -->
+                            <span class="inline-block bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Insights</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">⏳ The 10-Minute Delivery Revolution You Didn’t See Coming…</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sep 21, 2025</p>
+                        <p class="text-gray-700 flex-grow">In the past few years, a new trend has exploded in India: 10-minute delivery apps.
+Whether it’s food, groceries, or just a pack of chips companies are racing to reach your door faster than ever...</p>
+                        <a href="https://medium.com/@surya.nallagonda123/the-10-minute-delivery-revolution-you-didnt-see-coming-3a0c1a09e743" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <!-- Blog Post 3: Thoughts -->
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">💻 The Day Errors Taught Me JavaScript ⚡</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sept 18, 2025</p>
+                        <p class="text-gray-700 flex-grow">Have you ever started learning JavaScript and instead of writing logic, you first got stuck debugging errors? That’s exactly how my journey began....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/the-day-errors-taught-me-javascript-1a7b44f72306" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="Insights">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Tech" to "Builds" -->
+                            <span class="inline-block bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Insights</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">🛒 Countdowns & Limited Stock… Why Deals Make You Rush</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Oct 2, 2025</p>
+                        <p class="text-gray-700 flex-grow">Every year, festival season means one thing: mega online sales.
+We open Flipkart or Amazon and see banners flashing ✨ “70% OFF — only for today!”...</p>
+                        <a href="https://medium.com/@surya.nallagonda123/countdowns-limited-stock-why-deals-make-you-rush-e39ba14ec60e" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+                     
+
+                     <!-- Added Blog Post 4: Builds -->
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">Java Collections Are Hiding in Your Daily Life📱🍽️</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sept 17, 2025</p>
+                        <p class="text-gray-700 flex-grow">When I first started learning the Java Collection Framework, I didn’t expect to see it outside my laptop screen. But then, something funny happened. I started seeing code everywhere....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/java-collections-are-hiding-in-your-daily-life-%EF%B8%8F-62ff0b2ad1d0" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">Java Beyond Code: Seeing Queue and Set in Everyday Life ✨</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sept 17, 2025</p>
+                        <p class="text-gray-700 flex-grow">When I started learning Data Structures in Java, two concepts caught my attention Queue and Set. At first, they sounded technical, but when I related them to real life, they became much easier to understand....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/java-beyond-code-seeing-queue-and-set-in-everyday-life-afe1d972ad07" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">✨ Behind the Browser: JavaScript’s Memory, Data Types, and Speed.</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sept 21, 2025</p>
+                        <p class="text-gray-700 flex-grow">Ever wondered what happens when you write a small bit of JavaScript and hit “run”? Get ready! JS is like a friendly chef 👨‍🍳 in your favorite restaurant, magically turning instructions (your code) into the tasty dish 🍲 (your result).....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/behind-the-browser-javascripts-memory-data-types-and-speed-608f5b2924fd" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="thoughts">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Business" to "Ventures" -->
+                            <span class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Thoughts</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">🏎️ How to Predict Your Code’s Speed Before It Runs.</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Sept 21, 2025</p>
+                        <p class="text-gray-700 flex-grow">Ever noticed how the same type of program can feel super quick on one machine but painfully slow on another? The secret behind it is time complexity. If you’re learning programming, you’ll often hear terms like O(n), O(log n), and O(n²).....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/behind-the-browser-javascripts-memory-data-types-and-speed-608f5b2924fd" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+
+                    <div class="blog-post custom-card p-6 flex flex-col" data-category="Insights">
+                        <div class="mb-4">
+                            <!-- Changed tag from "Tech" to "Builds" -->
+                            <span class="inline-block bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Insights</span>
+                        </div>
+                        <h3 class="text-2xl font-heading mb-2">When a Truck Poster Made Me Question Everything About Logistics 🚚.</h3>
+                        <p class="text-gray-500 text-sm mb-4">Published on Oct 3, 2025</p>
+                        <p class="text-gray-700 flex-grow">It was just another evening. I was on my way to watch a movie, stuck in the usual city traffic, mindlessly watching vehicles pass by cars honking, bikes squeezing through gaps, trucks crawling along....</p>
+                        <a href="https://medium.com/@surya.nallagonda123/when-a-truck-poster-made-me-question-everything-about-logistics-7387ad4d6c96" class="custom-btn font-bold py-2 px-4 mt-6 self-start text-sm" target="_blank">Read More</a>
+                    </div>
+                     
+
+                </div>
+            </section>
+        </main>
+        
+         <!-- Footer -->
+        <footer class="text-center mt-24 border-t-2 border-dashed border-gray-300 pt-8">
+            <p class="text-gray-500 text-sm">&copy; 2025 Surya. Made with 💛</p>
+        </footer>
+
+    </div>
+
+    <script>
+    // document.addEventListener('DOMContentLoaded', () => {
+        // --- Mobile Menu Logic ---
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('-translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+            const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
+            mobileMenuBtn.innerHTML = isMenuOpen
+                ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`
+                : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+        }
+        
+        function closeMenu() {
+            mobileMenu.classList.add('-translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+            mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // --- Blog Filtering Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const blogPosts = document.querySelectorAll('.blog-post');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+
+                    // Update button styles
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('custom-btn-secondary');
+                    });
+                    button.classList.add('custom-btn-secondary');
+
+                    // Filter posts
+                    blogPosts.forEach(post => {
+                        if (filter === 'all' || post.dataset.category === filter) {
+                            post.style.display = 'flex'; // Use flex to match the parent's layout
+                        } else {
+                            post.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        // });
+    </script>
+
+</body>
+</html>
+
