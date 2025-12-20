@@ -99,6 +99,16 @@
             </button>
         </header>
 
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#FDF8F0] transform -translate-x-full transition-transform duration-300 ease-in-out z-20 md:hidden">
+            <nav class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="index.html" class="nav-link text-2xl" onclick="showPage('home'); closeMenu();">Home</a>
+                <a href="blog.html" class="nav-link text-2xl" onclick="showPage('blog'); closeMenu();">Blogs</a>
+                <a href="exp.html" class="nav-link text-2xl" onclick="showPage('exp'); closeMenu();">Experiments</a>
+                <a href="index.html#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" onclick="closeMenu()">High Five ✋</a>
+            </nav>
+        </div>
+
         <!-- Main Content -->
         <main>
             <section id="home">
@@ -389,3 +399,4 @@
     </script>
 </body>
 </html>
+
