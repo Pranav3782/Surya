@@ -1,3 +1,0 @@
-const CONFIG = {
-    GEMINI_API_KEY: "AIzaSyBqj8pFEH420Ue8t9DOjMoNwHLUbCsGQwc"
-};
