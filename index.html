@@ -105,7 +105,7 @@
                 <a href="index.html" class="nav-link text-2xl" onclick="showPage('home'); closeMenu();">Home</a>
                 <a href="blog.html" class="nav-link text-2xl" onclick="showPage('blog'); closeMenu();">Blogs</a>
                 <a href="exp.html" class="nav-link text-2xl" onclick="showPage('exp'); closeMenu();">Experiments</a>
-                <a href="index.html#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" onclick="closeMenu()">High Five ✋</a>
+                <a href="#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" onclick="closeMenu()">High Five ✋</a>
             </nav>
         </div>
 
@@ -238,6 +238,25 @@
     </div>
 
     <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const botContainer = document.getElementById('chatbot-container');
+
+        function toggleMenu() { 
+            mobileMenu.classList.toggle('-translate-x-full'); 
+            document.body.classList.toggle('overflow-hidden');
+            
+            // HIDE Chatbot Container using Tailwind classes when Navbar is open
+            if (!mobileMenu.classList.contains('-translate-x-full')) {
+                botContainer.classList.add('hidden');
+                botContainer.classList.remove('flex');
+            } else {
+                botContainer.classList.remove('hidden');
+                botContainer.classList.add('flex');
+            }
+        }
+        if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMenu);
+        
         const chatToggle = document.getElementById('chat-toggle');
         const chatWindow = document.getElementById('chat-window');
         const chatCta = document.getElementById('chat-cta');
@@ -399,4 +418,5 @@
     </script>
 </body>
 </html>
+
 
