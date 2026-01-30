@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surya | Creative Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .chat-window {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .chat-bubble {
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .chat-bubble ul {
+            list-style-type: none;
+            padding-left: 0.25rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .chat-bubble li {
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+        .chat-bubble a {
+            text-decoration: underline;
+            color: inherit;
+            font-weight: 600;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message-anim {
+            animation: fadeIn 0.3s ease forwards;
+        }
+        #chat-messages::-webkit-scrollbar {
+            width: 4px;
+        }
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .chip {
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 2px solid #e2e8f0;
+        }
+        .chip:hover {
+            transform: translateY(-2px);
+            border-color: black;
+            background-color: #fef08a;
+        }
+        .cta-label {
+            animation: bounceLeft 2s infinite;
+        }
+        @keyframes bounceLeft {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
+            40% {transform: translateX(-10px);}
+            60% {transform: translateX(-5px);}
+        }
+        .project-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+        .project-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-[#FDF8F0]">
+
+    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <header class="flex justify-between items-center mb-12 md:mb-16">
+            <a href="#" class="font-heading text-2xl" onclick="showPage('home')">Surya.</a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link text-lg active">Home</a>
+                <a href="blog.html" class="nav-link text-lg">Blogs</a>
+                <a href="exp.html" class="nav-link text-lg">Experiments</a>
+            </nav>
+            <a href="#contact" class="custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5">High Five ✋</a>
+            <button id="mobile-menu-btn" class="md:hidden z-30">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </header>
+
+        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#FDF8F0] transform -translate-x-full transition-transform duration-300 ease-in-out z-20 md:hidden">
+            <nav class="flex flex-col items-center justify-center h-full space-y-8">
+                <a href="index.html" class="nav-link text-2xl" onclick="toggleMenu()">Home</a>
+                <a href="blog.html" class="nav-link text-2xl" onclick="toggleMenu()">Blogs</a>
+                <a href="exp.html" class="nav-link text-2xl" onclick="toggleMenu()">Experiments</a>
+                <a href="index.html#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" onclick="closeMenu()">High Five ✋</a>
+            </nav>
+        </div>
+
+        <main>
+            <section id="home">
+                <div class="relative text-center md:text-left md:flex items-center justify-between gap-12 mb-24">
+                    <div class="md:w-2/3">
+                        <h1 class="text-5xl md:text-7xl lg:text-8xl font-heading mb-4">Hey, I'm Surya!</h1>
+                        <p class="text-lg md:text-xl text-gray-700 max-w-2xl">I like building cool things with code, exploring creative ideas, and learning new skills every day. I enjoy working on projects that challenge me and let me mix creativity with technology.</p>
+                        <div class="mt-8 flex justify-center md:justify-start gap-4">
+                            <a href="exp.html" class="custom-btn font-bold py-3 px-8">My Work</a>
+                        </div>
+                    </div>
+                    <div class="mt-12 md:mt-0 md:w-1/3 flex-shrink-0">
+                         <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto">
+                             <div class="absolute inset-0 bg-purple-300 rounded-full transform rotate-6"></div>
+                             <a href="https://www.linkedin.com/in/suryapranav13/" target="_blank">
+                                <img src="images/su2.jpeg" alt="Avatar" class="relative object-cover w-full h-full rounded-full border-4 border-black">
+                             </a>
+                         </div>
+                    </div>
+                </div>
+
+                <div class="mb-24 px-4">
+                    <h2 class="text-4xl font-heading text-center mb-10">Recent Projects</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        
+                        <div class="custom-card p-4 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
+                            <video class="rounded-lg mb-4 w-full h-48 object-cover border-2 border-black" autoplay muted loop>
+                                <source src="images/edit_flow.mp4" type="video/mp4" />
+                            </video>
+                            <h3 class="font-heading text-xl mb-2">EditFlow</h3>
+                            <p class="text-sm text-gray-600 mb-6 flex-grow">Workflow tool for managing editing pipelines and deliveries.</p>
+                            <a href="https://editflow-ten.vercel.app/" target="_blank" class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
+                                View Project 🚀
+                            </a>
+                        </div>
+
+                        <div class="custom-card p-4 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
+                            <video class="rounded-lg mb-4 w-full h-48 object-cover border-2 border-black" autoplay muted loop>
+                                <source src="images/listendrift.mp4" type="video/mp4" />
+                            </video>
+                            <h3 class="font-heading text-xl mb-2">ListenDrift</h3>
+                            <p class="text-sm text-gray-600 mb-6 flex-grow">Voice-driven interaction platform.</p>
+                            <a href="https://listendrift.entrext.com/" target="_blank" class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
+                                View Project 🚀
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mb-24">
+                    <h2 class="text-4xl font-heading text-center mb-8">My Toolkit</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-4xl mx-auto">
+                        <div class="custom-card p-4 text-center"><strong>HTML & CSS</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>JavaScript</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>React Js</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>ML</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>RPA 🤖</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>GitHub</strong></div>
+                        <div class="custom-card p-4 text-center"><strong>Streamlit</strong></div>
+                    </div>
+                </div>
+
+                <div class="mb-24">
+                    <h2 class="text-4xl font-heading text-center mb-8">Growth Journey</h2>
+
+                    <div class="max-w-2xl mx-auto custom-card p-6">
+                        <h3 class="text-2xl font-heading">Founding Tech Member</h3>
+                        <p class="text-gray-600 font-semibold">Entrext · Building Micro SaaS Products</p>
+                         <p class="mt-2 text-gray-700">Building and shipping production-ready Micro SaaS products from idea to deployment.
+Contributed across frontend, backend while collaborating closely with the founding team.</p>
+                    </div>
+                    <br>
+
+                    <div class="max-w-2xl mx-auto custom-card p-6 mb-6">
+                        <h3 class="text-2xl font-heading">MERN Stack Program</h3>
+                        <p class="text-gray-600 font-semibold">Student Tribe · Aug 2025 – Present</p>
+                         <p class="mt-2 text-gray-700">Hands-on full-stack training focused on building real-world applications using the MERN stack.
+Practicing frontend development, backend APIs, database design, and deployment through continuous project-based learning.</p>
+                    </div>
+                    
+                    <div class="max-w-2xl mx-auto custom-card p-6 md:p-8 mb-6">
+                        <h3 class="text-2xl font-heading">B.E in Information Technology</h3>
+                        <p class="text-gray-600 font-semibold">MVSR Engineering College, 2021 - 2025</p>
+                        <p class="mt-2 text-gray-700">Explored new ideas, built projects, and learned a lot along the way. Every challenge was a chance to grow.</p>
+                    </div>
+
+                     <div class="max-w-2xl mx-auto custom-card p-6 md:p-8">
+                        <h3 class="text-2xl font-heading">Minor in Innovation & Entrepreneurship</h3>
+                        <p class="text-gray-600 font-semibold">MVSR Engineering College, 2023 - 2025</p>
+                        <p class="mt-2 text-gray-700">Gained skills to be more innovative and adaptable, turning ideas into real projects.</p>
+                    </div>
+                    <br>
+                
+
+                    
+
+                    
+                </div>
+            
+            </section>
+        </main>
+        
+        <footer id="contact" class="text-center mt-24 border-t-2 border-dashed border-gray-300 pt-8 pb-16">
+            <h2 class="text-4xl font-heading mb-4">Let's Connect!</h2>
+            <div class="flex justify-center space-x-8">
+                <a href="https://www.linkedin.com/in/suryapranav13/" class="group relative text-gray-700 hover:text-purple-600 transition-all duration-300 transform hover:-translate-y-1" target="_blank">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 116.5 4.75a1.75 1.75 0 010 3.5zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93-.78 0-1.22.52-1.42 1.01-.07.18-.08.43-.08.68V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.28.98 3.28 4.3v4.84z"></path></svg>
+                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-sm font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">LinkedIn</span>
+                </a>
+                <a href="https://peerlist.io/suryapranav" class="group relative text-gray-700 hover:text-purple-600 transition-all duration-300 transform hover:-translate-y-1" target="_blank">
+                    <svg class="w-8 h-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M8.87 3h6.26a6 6 0 0 1 5.963 5.337l.21 1.896c.131 1.174.131 2.36 0 3.534l-.21 1.896A6 6 0 0 1 15.13 21H8.87a6 6 0 0 1-5.963-5.337l-.21-1.896a16 16 0 0 1 0-3.534l.21-1.896A6 6 0 0 1 8.87 3"/><path d="M9 17v-4m0 0V7h4a3 3 0 0 1 3 3v0a3 3 0 0 1-3 3z"/></g></svg>
+                    <span class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 whitespace-nowrap rounded-md bg-gray-800 px-2 py-1 text-sm font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">Peerlist</span>
+                </a>
+            </div>
+            <p class="mt-12 text-gray-500 text-sm">&copy; 2025 Surya. Made with 💛</p>
+        </footer>
+    </div>
+
+    <div id="chatbot-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div id="chat-cta" class="hidden sm:block absolute right-16 top-3 bg-white border-2 border-black px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap cta-label shadow-sm cursor-pointer">
+            💬 Ask my AI assistant Jarvis!
+        </div>
+
+        <div id="chat-window" class="hidden w-[90vw] sm:w-[350px] h-[520px] bg-white rounded-2xl border-2 border-black chat-window flex-col overflow-hidden mb-4">
+            <div class="bg-purple-600 p-4 text-white flex justify-between items-center border-b-2 border-black">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-yellow-400 rounded-full border-2 border-black flex items-center justify-center overflow-hidden">
+                        <img src="images/chatbot-logo.jpg" alt="S" class="w-full h-full object-cover" onerror="this.parentElement.innerHTML='<span class=\'font-bold text-black text-xs\'>S</span>'">
+                    </div>
+                    <div>
+                        <p class="font-bold text-sm leading-none">Jarvis</p>
+                    </div>
+                </div>
+                <button id="close-chat" class="hover:bg-purple-700 p-1 rounded-lg transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3 bg-[#f8fafc]">
+                <div class="chat-bubble bg-white border-2 border-black p-3 rounded-tr-2xl rounded-bl-2xl rounded-br-2xl text-sm shadow-sm message-anim">
+                    Hey there! 👋 I'm Jarvis. Ask me anything about Surya's projects or skills! 🚀
+                </div>
+                
+                <div id="quick-actions" class="flex flex-wrap gap-2 pt-2">
+                    <div class="chip bg-white px-3 py-1.5 rounded-full text-[11px] font-bold" onclick="handleQuickAction('View Projects')">📂 View Projects</div>
+                    <div class="chip bg-white px-3 py-1.5 rounded-full text-[11px] font-bold" onclick="handleQuickAction('Tech Stack')">🛠️ Tech Stack</div>
+                    <div class="chip bg-white px-3 py-1.5 rounded-full text-[11px] font-bold" onclick="handleQuickAction('Contact Surya')">📧 Contact Surya</div>
+                    <div class="chip bg-white px-3 py-1.5 rounded-full text-[11px] font-bold" onclick="handleQuickAction('About Surya')">👤 About Surya</div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t-2 border-black">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Type your question..." class="flex-1 bg-gray-100 border-2 border-black rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all" autocomplete="off">
+                    <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 border-2 border-black p-2 rounded-xl transition-all active:translate-y-0.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <button id="chat-toggle" class="w-14 h-14 bg-purple-600 hover:bg-purple-700 border-2 border-black rounded-full flex items-center justify-center text-white shadow-xl transition-all transform hover:scale-110 active:scale-95 overflow-hidden">
+            <img src="images/chat_logo.jpg" alt="Chat" class="w-full h-full object-cover" onerror="this.outerHTML='<svg class=\'w-7 h-7\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z\'></path></svg>'">
+        </button>
+    </div>
+
+    <script>
+        const chatToggle = document.getElementById('chat-toggle');
+        const chatWindow = document.getElementById('chat-window');
+        const chatCta = document.getElementById('chat-cta');
+        const closeChat = document.getElementById('close-chat');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                if (chatWindow.classList.contains('hidden')) {
+                    chatCta.classList.remove('hidden');
+                    chatCta.classList.add('flex');
+                }
+            }, 2000);
+        });
+
+        chatToggle.addEventListener('click', () => {
+            const isHidden = chatWindow.classList.contains('hidden');
+            chatWindow.classList.toggle('hidden');
+            chatCta.style.display = 'none'; 
+            if (isHidden) {
+                chatWindow.classList.add('flex');
+                chatInput.focus();
+            } else {
+                chatWindow.classList.remove('flex');
+            }
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+            chatWindow.classList.remove('flex');
+        });
+
+        function formatText(text) {
+            let cleanText = text.trim();
+            let formatted = cleanText
+                .replace(/^[-•*]\s*(.*)$/gm, '<li>• $1</li>')
+                .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+                .replace(/<\/ul>\s*<ul>/g, '');
+
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            formatted = formatted.replace(urlRegex, (url) => {
+                return `<a href="${url}" target="_blank">${url}</a>`;
+            });
+
+            return formatted.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+        }
+
+        function addMessage(text, isUser = false) {
+            const wrapper = document.createElement('div');
+            wrapper.className = isUser ? 'flex justify-end w-full message-anim' : 'flex justify-start w-full message-anim';
+            
+            const bubble = document.createElement('div');
+            bubble.className = isUser 
+                ? 'chat-bubble p-3 text-sm shadow-sm border-2 border-black bg-purple-600 text-white rounded-tl-2xl rounded-bl-2xl rounded-br-2xl' 
+                : 'chat-bubble p-3 text-sm shadow-sm border-2 border-black bg-white text-black rounded-tr-2xl rounded-bl-2xl rounded-br-2xl';
+            
+            if (isUser) {
+                bubble.textContent = text;
+            } else {
+                bubble.innerHTML = formatText(text);
+            }
+            
+            wrapper.appendChild(bubble);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function fetchAIResponse(userQuery) {
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userQuery }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.reply || "No response from server.";
+            } catch (error) {
+                console.error("Frontend error:", error);
+                return "Server connection failed. Is the Node server running?";
+            }
+        }
+            
+        async function processInput(text) {
+            addMessage(text, true);
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex justify-start w-full message-anim italic text-gray-400 text-xs px-2';
+            typingDiv.id = 'typing';
+            typingDiv.textContent = 'Jarvis is typing...';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            const response = await fetchAIResponse(text);
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+            addMessage(response);
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = chatInput.value.trim();
+            if (!text) return;
+            chatInput.value = '';
+            processInput(text);
+        });
+
+        function handleQuickAction(action) {
+            const queries = {
+                'View Projects': 'What are your projects?',
+                'Tech Stack': 'What skills do you have?',
+                'Contact Surya': 'How can I contact you? Please show me your LinkedIn and Email.',
+                'About Surya': 'Who is Surya Pranav?'
+            };
+            processInput(queries[action] || action);
+        }
+    </script>
+</body>
+</html>
+
+
