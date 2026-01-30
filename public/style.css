@@ -1,87 +1,85 @@
 /* ==============================================
-Shared Stylesheet for Surya's Portfolio
-==============================================
-*/
+   Shared Stylesheet for Surya's Portfolio
+   Vercel-safe | No Tailwind @apply
+============================================== */
 
-/* --- Base and Font Styles --- */
+/* ---------- Base Styles ---------- */
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #FDF8F0; /* Creamy off-white */
-    color: #1a1a1a;
-    animation: fadeIn 0.8s ease-in-out;
+  font-family: 'Inter', sans-serif;
+  background-color: #FDF8F0;
+  color: #1a1a1a;
+  animation: fadeIn 0.8s ease-in-out;
 }
 
 h1, h2, h3, h4, .font-heading {
-    font-family: 'Paytone One', sans-serif;
+  font-family: 'Paytone One', sans-serif;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Navigation Link Styles --- */
+/* ---------- Navigation ---------- */
 .nav-link {
-    @apply text-lg relative;
+  font-size: 1.125rem;
+  position: relative;
 }
+
 .nav-link::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: #7B61FF;
-    transition: width 0.3s;
-    @apply absolute bottom-[-4px] left-0;
-}
-.nav-link.active::after, .nav-link:hover::after {
-    width: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #7B61FF;
+  transition: width 0.3s ease;
 }
 
-/* --- Sticker Styles --- */
-.sticker {
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    pointer-events: none;
-    z-index: 0;
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
 }
 
-/* --- Custom Card Styles --- */
+/* ---------- Cards ---------- */
 .custom-card {
-    background-color: #fff;
-    border: 2px solid #1a1a1a;
-    border-radius: 1rem;
-    box-shadow: 4px 4px 0px #1a1a1a;
-    transition: all 0.3s ease;
-}
-.custom-card:hover {
-    transform: translateY(-5px) translateX(-5px);
-    box-shadow: 8px 8px 0px #7B61FF;
+  background: #ffffff;
+  border: 2px solid #1a1a1a;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0px #1a1a1a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- Custom Button Styles --- */
-.custom-btn {
-     background-color: #FFD23F; /* Primary Yellow */
-     border: 2px solid #1a1a1a;
-     border-radius: 0.75rem;
-     box-shadow: 3px 3px 0px #1a1a1a;
-     transition: all 0.3s ease;
+.custom-card:hover {
+  transform: translate(-5px, -5px);
+  box-shadow: 8px 8px 0px #7B61FF;
 }
+
+/* ---------- Buttons ---------- */
+.custom-btn {
+  background-color: #FFD23F;
+  border: 2px solid #1a1a1a;
+  border-radius: 0.75rem;
+  box-shadow: 3px 3px 0px #1a1a1a;
+  transition: all 0.25s ease;
+}
+
 .custom-btn:hover {
-     transform: translateY(-3px) translateX(-3px);
-     box-shadow: 6px 6px 0px #1a1a1a;
-     background-color: #FFC300;
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px #1a1a1a;
+  background-color: #FFC300;
 }
 
 .custom-btn-secondary {
-    background-color: #90E0EF; /* Secondary Blue */
+  background-color: #90E0EF;
 }
- .custom-btn-secondary:hover {
-    background-color: #00B4D8;
- }
 
+.custom-btn-secondary:hover {
+  background-color: #00B4D8;
+}
 
-/* for skills tag styling  testing_activities1 */
+/* ---------- Skill Tags ---------- */
 .skill-tag {
   background: #ede9fe;
   color: #5b21b6;
@@ -89,72 +87,14 @@ h1, h2, h3, h4, .font-heading {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
-
-
-/* timeline_exp2  */
+/* ---------- Timeline ---------- */
 .timeline-dot {
   width: 48px;
   height: 48px;
-  background: white;
-  border: 2px solid #e5e7eb;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.skill-tag {
-  background: #ede9fe;
-  color: #5b21b6;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* timeline3 file    */
-.timeline-dot {
-  width: 48px;
-  height: 48px;
-  background: white;
-  border: 2px solid #e5e7eb;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 12px;
-  color: #6b7280;
-  transition: all 0.3s ease;
-}
-
-.timeline-dot.active {
-  background: #7b61ff;
-  color: white;
-  transform: scale(1.15);
-  box-shadow: 0 0 12px rgba(123, 97, 255, 0.6);
-}
-
-.skill-tag {
-  background: #ede9fe;
-  color: #5b21b6;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* timeline 5 */
-
-.timeline-dot {
-  width: 48px;
-  height: 48px;
-  background: white;
+  background: #ffffff;
   border: 2px solid #e5e7eb;
   border-radius: 999px;
   display: flex;
@@ -168,36 +108,41 @@ h1, h2, h3, h4, .font-heading {
 
 .timeline-dot.active {
   background: #7b61ff;
-  color: white;
+  color: #ffffff;
   transform: scale(1.15);
   box-shadow: 0 0 14px rgba(123, 97, 255, 0.6);
 }
 
-.skill-tag {
-  background: #ede9fe;
-  color: #5b21b6;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
+/* ---------- Timeline Progress Bar ---------- */
+#timeline-progress {
+  transition: height 0.2s ease-out;
 }
 
-/* timeline 6 */
-
-
-
-/* chat */
+/* ---------- Chat Loader (if used elsewhere) ---------- */
 .dot-flashing {
   position: relative;
   width: 6px;
   height: 6px;
   border-radius: 5px;
   background-color: #9880ff;
-  color: #9880ff;
   animation: dot-flashing 1s infinite linear alternate;
-  animation-delay: 0.5s;
 }
+
 @keyframes dot-flashing {
   0% { background-color: #9880ff; }
   50%, 100% { background-color: rgba(152, 128, 255, 0.2); }
+}
+
+/* ---------- Responsive Tweaks ---------- */
+@media (max-width: 768px) {
+  .custom-card:hover {
+    transform: none;
+    box-shadow: 4px 4px 0px #1a1a1a;
+  }
+
+  .timeline-dot {
+    width: 40px;
+    height: 40px;
+    font-size: 11px;
+  }
 }
