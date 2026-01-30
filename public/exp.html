@@ -1,171 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experiments | Surya's Portfolio</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiments | Surya</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body class="antialiased overflow-x-hidden">
 
-    <!-- Container for the entire app -->
-    <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
-        <!-- Header and Navigation -->
-        <header class="flex justify-between items-center mb-12 md:mb-16">
-            <a href="index.html" class="font-heading text-2xl">Surya.</a>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="blog.html" class="nav-link">Blogs</a>
-                <a href="exp.html" class="nav-link active">Experiments</a>
-            </nav>
-            <a href="index.html#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5">High Five ✋</a>
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden z-30">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </header>
+<div id="app" class="max-w-7xl mx-auto px-4 py-8">
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#FDF8F0] transform -translate-x-full transition-transform duration-300 ease-in-out z-20 md:hidden">
-            <nav class="flex flex-col items-center justify-center h-full space-y-8">
-                <a href="index.html" class="nav-link text-2xl">Home</a>
-                <a href="blog.html" class="nav-link text-2xl">Blogs</a>
-                <a href="exp.html" class="nav-link text-2xl">Experiments</a>
-                <a href="index.html#contact" class="filter-btn custom-btn custom-btn-secondary text-sm md:text-base font-bold py-2 px-5" onclick="closeMenu()">High Five ✋</a>
-            </nav>
+<header class="flex justify-between items-center mb-12">
+  <a href="index.html" class="font-heading text-2xl">Surya.</a>
+  <nav class="hidden md:flex gap-8">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="blog.html" class="nav-link">Blogs</a>
+    <a href="exp.html" class="nav-link active">Experiments</a>
+  </nav>
+</header>
+
+<h1 class="text-5xl font-heading text-center mb-20">My Experiment Journey</h1>
+
+<div id="timeline-wrapper" class="relative">
+
+  <div class="absolute left-1/2 -translate-x-1/2 top-0 h-full w-[2px] bg-gray-200 hidden md:block overflow-hidden rounded-full">
+    <div id="timeline-progress" class="w-full bg-purple-500 h-0 rounded-full"></div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="md:text-right">
+      <div class="custom-card p-5 inline-block">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/test1.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Career Navigator</h3>
+        <p class="text-gray-700 text-sm mb-3">A career exploration tool where users select their skills and instantly see which job roles they are best suited for.</p>
+        <div class="flex flex-wrap gap-2 mb-4 md:justify-end">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Streamlit</span>
+          <span class="skill-tag">ML</span>
         </div>
-
-        <!-- Main Content -->
-        <main>
-            <section id="exp">
-                <h1 class="text-5xl font-heading text-center mb-4">My Experiments</h1><br>
-                <!-- <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">This is my digital playground. A place where I experiment with new technologies, build fun little projects, and push my creative boundaries.</p> -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Experiment 1 -->
-                    <div class="custom-card overflow-hidden">
-                        <a href="https://carriernavigator1.streamlit.app/" target="_blank"><video src="images/test1.mp4" autoplay loop muted playsinline class="w-full h-54 object-cover"></video></a> 
-                        <div class="p-6">
-                            <h3 class="text-2xl font-heading mb-2">Carrier Navigator</h3>
-                            <p class="text-gray-700 mb-4">This is an interactive web tool built to help you discover a suitable career path.You just pick what you're good at and what you enjoy from a list. The tool then instantly shows you a list of jobs that would be a great fit for you.</p>
-                            <div class="flex gap-4">
-                               <a href="https://carriernavigator1.streamlit.app/" target="blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
-                               <a href="https://github.com/Pranav3782/Carrier_Navigator1" target="blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
-                           </div>
-                        </div>
-                    </div>
-                     <!-- Experiment 2 -->
-                     <div class="custom-card overflow-hidden">
-                        <a href="https://coldmailgenerator-1.streamlit.app/" target="_blank">
-                           <video src="images/mail_2.mp4" autoplay loop muted playsinline class="w-full h-54 object-cover"></video>
-                        </a> 
-                        <div class="p-6">
-                            <h3 class="text-2xl font-heading mb-2">Cold Email Generator</h3>
-                            <p class="text-gray-700 mb-4">This tool creates ready-made emails for job applications. Users just paste a job link, and the app automatically generates a personalized email they can use.</p>
-                             <div class="flex gap-4">
-                               <a href="https://coldmailgenerator-1.streamlit.app/" class="custom-btn font-bold py-2 px-4 text-sm" target="blank">Play</a>
-                               <a href="https://github.com/Pranav3782/Cold_mail_generator" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
-                           </div>
-                        </div>
-                    </div>
-                    <!-- More experiments can be added here -->
-                     <div class="custom-card overflow-hidden">
-                        <a href="https://taste-fit.vercel.app/" target="_blank">
-                           <video src="images/rest2.mp4" autoplay loop muted playsinline class="w-full h-54 object-cover"></video>
-                        </a> 
-                        <div class="p-6">
-                            <h3 class="text-2xl font-heading mb-2">Taste Fit</h3>
-                            <p class="text-gray-700 mb-4">Not sure which restaurant to choose? Our AI rates hygiene, price, and healthiness, and a chatbot answers your questions instantly.</p>
-                             <div class="flex gap-4">
-                               <a href="https://taste-fit.vercel.app/" class="custom-btn font-bold py-2 px-4 text-sm" target="blank">Play</a>
-                               <a href="https://github.com/Pranav3782/Restaurent_Analyser" target="blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
-                           </div>
-                        </div>
-                    </div>
-                    <div class="custom-card overflow-hidden">
-                        <a href="https://skin-mate-one.vercel.app/" target="_blank">
-                           <video src="images/skin1.mp4" autoplay loop muted playsinline class="w-full h-54 object-cover"></video>
-                        </a> 
-                        <div class="p-6">
-                            <h3 class="text-2xl font-heading mb-2">Skin Mate</h3>
-                            <p class="text-gray-700 mb-4">Skinmate is a smart skincare app that reads product ingredients from photos and gives you simple, skincare tips.</p>
-                             <div class="flex gap-4">
-                               <a href="https://skin-mate-one.vercel.app/" class="custom-btn font-bold py-2 px-4 text-sm" target="blank">Play</a>
-                               <a href="https://github.com/Pranav3782/Skin_mate" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
-                           </div>
-                        </div>
-                    </div>
-                    <!-- chat bot is added -->
-                    <div class="custom-card overflow-hidden">
-                        <a href="https://chat-boot.streamlit.app/" target="_blank">
-                           <video src="images/chat3.mp4" autoplay loop muted playsinline class="w-full h-54 object-cover"></video>
-                        </a> 
-                        <div class="p-6">
-                            <h3 class="text-2xl font-heading mb-2">MemoryBot</h3>
-                            <p class="text-gray-700 mb-4">Meet your Memory Bot 🤖  your smart all-in-one assistant! 
-                                It checks weather 🌦️, solves math 🧮, chats with Gemini 💬, and remembers everything 🧠.
-                                </p>
-                             <div class="flex gap-4">
-                               <a href="https://chat-boot.streamlit.app/" class="custom-btn font-bold py-2 px-4 text-sm" target="blank">Play</a>
-                               <a href="https://github.com/Pranav3782/Chatbot_memory" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        
-        <!-- Footer -->
-        <footer class="text-center mt-24 border-t-2 border-dashed border-gray-300 pt-8">
-             <p class="text-gray-500 text-sm">&copy; 2025 Surya. Made with 💛</p>
-        </footer>
-
+        <div class="flex gap-4 md:justify-end">
+            <a href="https://carriernavigator1.streamlit.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Carrier_Navigator1" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
     </div>
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Aug</div>
+    </div>
+  </div>
 
-    <script>
-        // --- Mobile Menu Logic ---
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Sep</div>
+    </div>
+    <div>
+      <div class="custom-card p-5">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/mail_2.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Cold Email Generator</h3>
+        <p class="text-gray-700 text-sm mb-3">A tool designed for students and job seekers to generate cold emails in three different tones (formal, friendly, confident).</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">LLM</span>
+          <span class="skill-tag">Prompting</span>
+        </div>
+        <div class="flex gap-4">
+            <a href="https://coldmailgenerator-1.streamlit.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Cold_mail_generator" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        function toggleMenu() {
-            mobileMenu.classList.toggle('-translate-x-full');
-            document.body.classList.toggle('overflow-hidden');
-            const isMenuOpen = !mobileMenu.classList.contains('-translate-x-full');
-            mobileMenuBtn.innerHTML = isMenuOpen
-                ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`
-                : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
-        }
-        
-        function closeMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-            document.body.classList.remove('overflow-hidden');
-            mobileMenuBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>`;
-        }
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="md:text-right">
+      <div class="custom-card p-5 inline-block">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/rest2.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Taste Fit</h3>
+        <p class="text-gray-700 text-sm mb-3">Users select a restaurant and location to get aggregated reviews, insights, and an AI chatbot that answers questions about that restaurant.</p>
+        <div class="flex flex-wrap gap-2 mb-4 md:justify-end">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">APIs</span>
+          <span class="skill-tag">AI-powered chatbot</span>
+        </div>
+        <div class="flex gap-4 md:justify-end">
+            <a href="https://taste-fit.vercel.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Restaurent_Analyser" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Oct</div>
+    </div>
+  </div>
 
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-    </script>
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Nov</div>
+    </div>
+    <div>
+      <div class="custom-card p-5">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/chat3.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Skin Mate</h3>
+        <p class="text-gray-700 text-sm mb-3">Users upload an image of a skincare product’s ingredient list, and the system analyzes the ingredients to provide insights.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="skill-tag">Html</span>
+          <span class="skill-tag">Css</span>
+          <span class="skill-tag">Ocr</span>
+         
+          <span class="skill-tag">Fastapi</span>
+
+        </div>
+        <div class="flex gap-4">
+            <a href="https://skin-mate-one.vercel.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/skinmate" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="md:text-right">
+      <div class="custom-card p-5 inline-block w-full md:w-auto">
+        <video class="rounded-lg mb-3 w-full md:w-[320px] h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/movies.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Chithram</h3>
+        <p class="text-gray-700 text-sm mb-3">A basic OTT-style platform built using only HTML and CSS, focusing purely on layout, structure, and UI composition.</p>
+        <div class="flex flex-wrap gap-2 mb-4 md:justify-end">
+          <span class="skill-tag">Html</span>
+          <span class="skill-tag">Css</span>
+        </div>
+        <div class="flex gap-4 md:justify-end">
+            <a href="https://chithram-nine.vercel.app/index.html" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Chithram" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Nov</div>
+    </div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Dec</div>
+    </div>
+    <div>
+      <div class="custom-card p-5">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/pokemon2.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Pokemon</h3>
+        <p class="text-gray-700 text-sm mb-3">A fun project where users click a button to generate random Pokémon cards using the Pokémon API.
+Built to understand API integration and dynamic rendering.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Pokémon API</span>
+          <span class="skill-tag">Html</span>
+          <span class="skill-tag">Css</span>
+        </div>
+        <div class="flex gap-4">
+            <a href="https://pokemon-pink-mu.vercel.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Pokemon" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="md:text-right">
+      <div class="custom-card p-5 inline-block w-full md:w-auto">
+        <video class="rounded-lg mb-3 w-full md:w-[320px] h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/seat_treat.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Seat and Treat</h3>
+        <p class="text-gray-700 text-sm mb-3">A browser-based platform that allows users to book seats and order food, built entirely using JavaScript DOM manipulation.</p>
+        <div class="flex flex-wrap gap-2 mb-4 md:justify-end">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Html</span>
+          <span class="skill-tag">Css</span>
+          <span class="skill-tag">DOM manipulation</span>
+          
+        </div>
+        <div class="flex gap-4 md:justify-end">
+            <a href="https://seat-and-treat.vercel.app/" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Seat_and_Treat" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Dec</div>
+    </div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-24 timeline-item">
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">Jan</div>
+    </div>
+    <div>
+      <div class="custom-card p-5">
+        <video class="rounded-lg mb-3 w-full h-52 object-cover" autoplay muted loop playsinline>
+          <source src="images/skillSwap.mp4" type="video/mp4">
+        </video>
+        <h3 class="text-xl font-heading">Skill Swap</h3>
+        <p class="text-gray-700 text-sm mb-3">An end-to-end full-stack platform where users can register, showcase their skills, and connect with others — not a course-selling platform, but a peer skill-exchange ecosystem.</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Mongodb</span>
+          
+        </div>
+        <div class="flex gap-4">
+            <a href="#" target="_blank" class="custom-btn font-bold py-2 px-4 text-sm">Play</a>
+            <a href="https://github.com/Pranav3782/Skill_Swap" target="_blank" class="custom-btn custom-btn-secondary font-bold py-2 px-4 text-sm">Source Code</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative grid md:grid-cols-2 gap-10 mb-10 timeline-item">
+    <div class="md:text-right">
+      <div class="custom-card p-6 opacity-70 inline-block">
+        <h3 class="font-heading text-lg">More coming 🚀</h3>
+        <p class="text-sm text-gray-600">Building new innovations every month.</p>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center justify-center">
+      <div class="timeline-dot">2026</div>
+    </div>
+  </div>
+
+</div>
+
+<footer class="text-center mt-24 border-t border-dashed pt-6 text-sm text-gray-500">
+  © 2026 Surya
+</footer>
+
+</div>
+
+<script>
+const wrapper = document.getElementById("timeline-wrapper");
+const progressBar = document.getElementById("timeline-progress");
+const dots = document.querySelectorAll(".timeline-dot");
+
+let currentProgress = 0;
+
+function animate() {
+  const rect = wrapper.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+
+  const scrolled = Math.min(Math.max(windowHeight * 0.2 - rect.top, 0), rect.height);
+  const targetProgress = scrolled / rect.height;
+
+  currentProgress += (targetProgress - currentProgress) * 0.08;
+  progressBar.style.height = `${currentProgress * 100}%`;
+
+  dots.forEach(dot => {
+    const dotTop = dot.getBoundingClientRect().top;
+    if (dotTop < windowHeight * 0.6) {
+      dot.classList.add("active");
+    } else {
+      dot.classList.remove("active");
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
