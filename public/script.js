@@ -67,7 +67,7 @@ function addMessage(text, isUser = false) {
 async function fetchAIResponse(userQuery) {
     try {
         // ✅ FIXED: Using "/chat" (relative) instead of "localhost"
-        const response = await fetch("/chat", {
+        const response = await fetch("/api/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: userQuery }),
@@ -116,3 +116,4 @@ window.handleQuickAction = async function(action) {
     const response = await fetchAIResponse(query);
     addMessage(response);
 };
+
