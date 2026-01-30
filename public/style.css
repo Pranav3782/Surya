@@ -80,6 +80,7 @@ h1, h2, h3, h4, .font-heading {
     background-color: #00B4D8;
  }
 
+
 /* for skills tag styling  testing_activities1 */
 .skill-tag {
   background: #ede9fe;
@@ -88,4 +89,115 @@ h1, h2, h3, h4, .font-heading {
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
+}
+
+
+
+/* timeline_exp2  */
+.timeline-dot {
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.skill-tag {
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* timeline3 file    */
+.timeline-dot {
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #6b7280;
+  transition: all 0.3s ease;
+}
+
+.timeline-dot.active {
+  background: #7b61ff;
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(123, 97, 255, 0.6);
+}
+
+.skill-tag {
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* timeline 5 */
+
+.timeline-dot {
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #6b7280;
+  transition: all 0.4s ease;
+}
+
+.timeline-dot.active {
+  background: #7b61ff;
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 0 14px rgba(123, 97, 255, 0.6);
+}
+
+.skill-tag {
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* timeline 6 */
+
+
+
+/* chat */
+.dot-flashing {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  animation: dot-flashing 1s infinite linear alternate;
+  animation-delay: 0.5s;
+}
+@keyframes dot-flashing {
+  0% { background-color: #9880ff; }
+  50%, 100% { background-color: rgba(152, 128, 255, 0.2); }
 }
