@@ -10,8 +10,11 @@ export default async function handler(req, res) {
         const { message } = req.body;
         const API_KEY = process.env.GEMINI_API_KEY;
 
-        // Ruthless check: Stop early if the key is missing
-        if (!API_KEY) throw new Error("GEMINI_API_KEY is not set in Vercel.");
+        // 1. Check if the key exists
+        if (!API_KEY) {
+            console.error("CRITICAL ERROR: GEMINI_API_KEY is missing from Vercel Environment Variables.");
+            return res.status(500).json({ error: "API Key not configured on server." });
+        }
 
         const response = await fetch(
             `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
@@ -20,21 +23,24 @@ export default async function handler(req, res) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     contents: [{ role: "user", parts: [{ text: message }] }],
-                    systemInstruction: { parts: [{ text: "You are Jarvis..." }] },
+                    systemInstruction: { parts: [{ text: "You are Jarvis, a helpful AI portfolio assistant." }] },
                 }),
             }
         );
 
         const data = await response.json();
-        
-        // Handle API errors (like Quota Exceeded)
-        if (data.error) return res.status(500).json({ reply: `AI Error: ${data.error.message}` });
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm speechless.";
+        // 2. Check if Gemini returned an error (e.g., Invalid Key)
+        if (data.error) {
+            console.error("Gemini API Error:", data.error.message);
+            return res.status(500).json({ error: data.error.message });
+        }
+
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Jarvis is having trouble thinking.";
         return res.status(200).json({ reply: reply.replace(/[*'"]/g, '').trim() });
 
     } catch (error) {
-        console.error("Vercel Function Error:", error.message);
-        return res.status(500).json({ error: "Jarvis is offline. Check Vercel logs." });
+        console.error("Server Crash Error:", error.message);
+        return res.status(500).json({ error: "Internal Server Error" });
     }
 }
