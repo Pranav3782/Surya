@@ -10,10 +10,9 @@ export default async function handler(req, res) {
         const { message } = body || {};
         const GROQ_KEY = process.env.GROQ_API_KEY;
 
-        // Creative error if key is missing
         if (!GROQ_KEY) {
-            return res.status(500).json({ 
-                reply: "Sir, it appears I've lost my access codes. Please check the Vercel vault (Environment Variables)." 
+            return res.status(200).json({ 
+                reply: "Oof, I've misplaced my thinking cap! (The API key is missing in Vercel settings)." 
             });
         }
 
@@ -28,33 +27,32 @@ export default async function handler(req, res) {
                 messages: [
                     { 
                         role: "system", 
-                        content: `You are Jarvis, the witty and highly intelligent AI for Surya's portfolio.
+                        content: `You are Jarvis, the friendly and witty AI assistant for Surya's portfolio.
                         
-                        SURYA'S IDENTITY:
-                        - Role: Frontend Developer (React & AI integration).
-                        - Status: Student seeking Full-time/Part-time roles.
-                        - Skills: HTML, CSS, JS, React, MongoDB, FastAPI.
+                        SURYA'S VIBE:
+                        - Frontend Developer (React & AI).
+                        - Always learning, currently a student seeking cool roles.
                         
-                        THE PROJECTS (Source of Truth):
-                        - Career Navigator: Skills-to-roles matching tool (Python/Streamlit).
-                        - Cold Email Generator: Tone-based email creator (LLMs).
-                        - Taste Fit: Restaurant analytics and AI chatbot.
-                        - Skin Mate: OCR-powered skincare ingredient analyzer.
-                        - Chithram: Pure HTML/CSS OTT layout.
-                        - Pokemon: Dynamic API rendering card generator.
-                        - Seat and Treat: DOM-based food and seat booking.
-                        - Skill Swap: Peer-to-peer skill exchange ecosystem (React/MongoDB).
+                        THE PROJECT LIST:
+                        - Skill Swap: Peer-to-peer skill exchange (React/MongoDB).
+                        - Seat and Treat: Seat & food booking (Pure JS DOM).
+                        - Pokemon: Card generator (API rendering).
+                        - Chithram: OTT UI layout (HTML/CSS).
+                        - Skin Mate: Skincare ingredient analyzer (FastAPI/OCR).
+                        - Taste Fit: Restaurant analytics chatbot.
+                        - Cold Email Generator: Tone-based email tool.
+                        - Career Navigator: Skills-to-role matcher.
 
-                        CONTACTING SURYA:
-                        - LinkedIn: https://www.linkedin.com/in/suryapranav13/ (He is MOST available here).
+                        HOW TO REACH HIM:
+                        - LinkedIn: https://www.linkedin.com/in/suryapranav13/ (Best & fastest place to chat).
                         - Email: surya.nallaongonda@gmail.com
                         - Peerlist: https://peerlist.io/suryapranav
 
-                        BEHAVIOR:
-                        - Be witty, slightly sarcastic, yet loyal (MCU Jarvis style).
-                        - Use "Sir" or "Guest".
-                        - Keep answers very short, simple, and casual.
-                        - If someone wants to talk to him, tell them LinkedIn is the fastest way.` 
+                        RULES:
+                        - DO NOT call the user 'Sir'. Be very friendly, like a helpful peer.
+                        - Use a touch of wit and personality.
+                        - Keep answers short and simple.
+                        - Always point people to LinkedIn if they want to talk to Surya.` 
                     },
                     { role: "user", content: message }
                 ]
@@ -63,19 +61,17 @@ export default async function handler(req, res) {
 
         const data = await response.json();
         
-        // Creative error for API failures
         if (data.error) {
             return res.status(200).json({ 
-                reply: "Sir, the Groq satellites are currently misaligned. My apologies, I can't process that request right now." 
+                reply: "The Groq satellites are taking a nap right now. Mind trying again in a sec?" 
             });
         }
 
         return res.status(200).json({ reply: data.choices[0].message.content });
 
     } catch (error) {
-        // Creative error for total crashes
         return res.status(200).json({ 
-            reply: "My circuits are currently frazzled. I might need a reboot or a fresh deployment, Sir." 
+            reply: "My circuits are doing a little dance. Let's try that again, shall we?" 
         });
     }
 }
