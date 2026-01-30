@@ -64,22 +64,37 @@ function addMessage(text, isUser = false) {
 }
 
 // Backend Helper: Talks to your Vercel Function
-async function fetchAIResponse(userQuery) {
-    try {
-        // ✅ FIXED: Using "/chat" (relative) instead of "localhost"
-        const response = await fetch("/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: userQuery }),
-        });
+export default async function handler(req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        // Vercel sometimes passes body as a string, sometimes as an object
+        const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+        const userMessage = body?.message;
+        const API_KEY = process.env.GEMINI_API_KEY;
+
+        if (!API_KEY) return res.status(500).json({ error: "Missing API Key" });
+        if (!userMessage) return res.status(400).json({ error: "No message sent" });
+
+        const response = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ role: "user", parts: [{ text: userMessage }] }]
+                })
+            }
+        );
 
         const data = await response.json();
-        return data.reply || "Jarvis is lost in thought. Try again?";
-    } catch (error) {
-        console.error("Frontend error:", error);
-        return "Connection failed. Is the server running?";
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Jarvis is offline.";
+        return res.status(200).json({ reply });
+
+    } catch (err) {
+        console.error("SERVER CRASH:", err.message);
+        return res.status(500).json({ error: err.message });
     }
 }
 
@@ -116,4 +131,5 @@ window.handleQuickAction = async function(action) {
     const response = await fetchAIResponse(query);
     addMessage(response);
 };
+
 
