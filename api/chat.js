@@ -1,4 +1,5 @@
 export default async function handler(req, res) {
+    // 1. Set CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -10,10 +11,15 @@ export default async function handler(req, res) {
         const { message } = req.body;
         const API_KEY = process.env.GEMINI_API_KEY;
 
-        // 1. Check if the key exists
+        // DIAGNOSTIC CHECK: Is the API Key missing?
         if (!API_KEY) {
-            console.error("CRITICAL ERROR: GEMINI_API_KEY is missing from Vercel Environment Variables.");
-            return res.status(500).json({ error: "API Key not configured on server." });
+            console.error("Missing GEMINI_API_KEY");
+            return res.status(500).json({ error: "Server Error: API Key is missing in Vercel settings." });
+        }
+
+        // DIAGNOSTIC CHECK: Is the message missing?
+        if (!message) {
+            return res.status(400).json({ error: "Client Error: No message provided." });
         }
 
         const response = await fetch(
@@ -30,17 +36,17 @@ export default async function handler(req, res) {
 
         const data = await response.json();
 
-        // 2. Check if Gemini returned an error (e.g., Invalid Key)
+        // Check if Google returned an error (e.g., Invalid API Key)
         if (data.error) {
             console.error("Gemini API Error:", data.error.message);
-            return res.status(500).json({ error: data.error.message });
+            return res.status(500).json({ error: `Gemini Error: ${data.error.message}` });
         }
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Jarvis is having trouble thinking.";
+        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Jarvis is speechless.";
         return res.status(200).json({ reply: reply.replace(/[*'"]/g, '').trim() });
 
     } catch (error) {
-        console.error("Server Crash Error:", error.message);
-        return res.status(500).json({ error: "Internal Server Error" });
+        console.error("Vercel Runtime Error:", error.message);
+        return res.status(500).json({ error: `Runtime Error: ${error.message}` });
     }
 }
