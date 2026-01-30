@@ -1,9 +1,9 @@
 /* ==============================================
-   Shared Stylesheet for Surya's Portfolio
-   Vercel-safe | No Tailwind @apply
+   Surya Portfolio – Final Experiments Styles
+   Vercel-safe | Tailwind CDN compatible
 ============================================== */
 
-/* ---------- Base Styles ---------- */
+/* ---------- Base ---------- */
 body {
   font-family: 'Inter', sans-serif;
   background-color: #FDF8F0;
@@ -79,11 +79,11 @@ h1, h2, h3, h4, .font-heading {
   background-color: #00B4D8;
 }
 
-/* ---------- Skill Tags ---------- */
+/* ---------- Skill Tags (PURPLE, STATIC) ---------- */
 .skill-tag {
-  background: #ede9fe;
-  color: #5b21b6;
-  padding: 4px 10px;
+  background: #7B61FF;
+  color: #ffffff;
+  padding: 4px 12px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
@@ -103,46 +103,59 @@ h1, h2, h3, h4, .font-heading {
   font-weight: 700;
   font-size: 12px;
   color: #6b7280;
-  transition: all 0.4s ease;
+  transition: all 0.35s ease;
 }
 
+/* ACTIVE MONTH (when bar reaches viewport point) */
 .timeline-dot.active {
-  background: #7b61ff;
+  background: #7B61FF;
   color: #ffffff;
   transform: scale(1.15);
   box-shadow: 0 0 14px rgba(123, 97, 255, 0.6);
+  border-color: #7B61FF;
 }
 
 /* ---------- Timeline Progress Bar ---------- */
 #timeline-progress {
-  transition: height 0.2s ease-out;
+  background: #7B61FF;
+  transition: height 0.25s ease-out;
 }
 
 /* ---------- Chat Loader (if used elsewhere) ---------- */
 .dot-flashing {
-  position: relative;
   width: 6px;
   height: 6px;
   border-radius: 5px;
-  background-color: #9880ff;
+  background-color: #7B61FF;
   animation: dot-flashing 1s infinite linear alternate;
 }
 
 @keyframes dot-flashing {
-  0% { background-color: #9880ff; }
-  50%, 100% { background-color: rgba(152, 128, 255, 0.2); }
+  0% { background-color: #7B61FF; }
+  50%, 100% { background-color: rgba(123, 97, 255, 0.25); }
 }
 
-/* ---------- Responsive Tweaks ---------- */
+/* ---------- MOBILE: REMOVE TIMELINE COMPLETELY ---------- */
 @media (max-width: 768px) {
+
+  /* Hide timeline line */
+  #timeline-wrapper > .absolute {
+    display: none !important;
+  }
+
+  /* Hide month dots */
+  .timeline-dot {
+    display: none !important;
+  }
+
+  /* Cards stack normally */
+  .timeline-item {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Disable hover lift on mobile */
   .custom-card:hover {
     transform: none;
     box-shadow: 4px 4px 0px #1a1a1a;
-  }
-
-  .timeline-dot {
-    width: 40px;
-    height: 40px;
-    font-size: 11px;
   }
 }
