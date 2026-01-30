@@ -6,33 +6,36 @@ export default async function handler(req, res) {
     if (req.method === 'OPTIONS') return res.status(200).end();
 
     try {
-        // 1. Safe Body Parsing
         const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
         const { message } = body || {};
-        const API_KEY = process.env.GEMINI_API_KEY;
+        const GROQ_KEY = process.env.GROQ_API_KEY;
 
-        if (!API_KEY) throw new Error("GEMINI_API_KEY is missing in Vercel settings.");
-        if (!message) throw new Error("No message received from frontend.");
+        if (!GROQ_KEY) return res.status(500).json({ error: "Missing GROQ_API_KEY in Vercel." });
 
-        const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-            {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    contents: [{ role: "user", parts: [{ text: message }] }],
-                }),
-            }
-        );
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${GROQ_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "llama-3.3-70b-versatile", // Or your preferred Groq model
+                messages: [
+                    { role: "system", content: "You are Jarvis, a helpful AI assistant for Surya's portfolio." },
+                    { role: "user", content: message }
+                ]
+            })
+        });
 
         const data = await response.json();
-        if (data.error) throw new Error(`Gemini API: ${data.error.message}`);
+        
+        if (data.error) throw new Error(data.error.message);
 
-        const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm speechless.";
-        return res.status(200).json({ reply: reply.trim() });
+        const reply = data.choices[0].message.content;
+        return res.status(200).json({ reply });
 
     } catch (error) {
-        console.error("JARVIS CRASH:", error.message);
+        console.error("GROQ CRASH:", error.message);
         return res.status(500).json({ error: error.message });
     }
 }
