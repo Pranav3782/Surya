@@ -79,3 +79,13 @@ h1, h2, h3, h4, .font-heading {
  .custom-btn-secondary:hover {
     background-color: #00B4D8;
  }
+
+/* for skills tag styling  testing_activities1 */
+.skill-tag {
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
