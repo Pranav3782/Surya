@@ -343,7 +343,7 @@ Practicing frontend development, backend APIs, database design, and deployment t
 
         async function fetchAIResponse(userQuery) {
             try {
-                const response = await fetch("http://localhost:3000/chat", {
+                const response = await fetch("/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ message: userQuery }),
@@ -396,3 +396,4 @@ Practicing frontend development, backend APIs, database design, and deployment t
     </script>
 </body>
 </html>
+
