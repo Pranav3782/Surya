@@ -81,12 +81,12 @@ h1, h2, h3, h4, .font-heading {
 
 /* ---------- Skill Tags (PURPLE, STATIC) ---------- */
 .skill-tag {
-  background: #7B61FF;
-  color: #ffffff;
+  background-color: #ede9fe; /* purple-100 */
+  color: #6d28d9;           /* purple-700 */
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 600;         /* font-semibold */
   white-space: nowrap;
 }
 
@@ -159,3 +159,4 @@ h1, h2, h3, h4, .font-heading {
     box-shadow: 4px 4px 0px #1a1a1a;
   }
 }
+
