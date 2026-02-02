@@ -1,17 +1,16 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surya | Creative Portfolio</title>
+    <link rel="icon" href="/images/surya_logo.png">
+
     <link rel="stylesheet" href="style.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
-   
-   <script type="module" src="script.js"></script>
-   <link rel="icon" href="/images/surya_logo.png">
-
-
+    <script src="config.js" defer></script>
+    <script src="script.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -127,35 +126,73 @@
                          </div>
                     </div>
                 </div>
+<!--  -->
+ <div class="mb-24 px-4">
+    <h2 class="text-4xl font-heading text-center mb-10">Recent Projects</h2>
 
-                <div class="mb-24 px-4">
-                    <h2 class="text-4xl font-heading text-center mb-10">Recent Projects</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        
-                        <div class="custom-card p-4 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
-                            <video class="rounded-lg mb-4 w-full h-48 object-cover border-2 border-black" autoplay muted loop>
-                                <source src="images/edit_flow.mp4" type="video/mp4" />
-                            </video>
-                            <h3 class="font-heading text-xl mb-2">EditFlow</h3>
-                            <p class="text-sm text-gray-600 mb-6 flex-grow">Workflow tool for managing editing pipelines and deliveries.</p>
-                            <a href="https://editflow-ten.vercel.app/" target="_blank" class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
-                                View Project 🚀
-                            </a>
-                        </div>
+    <div class="flex items-stretch md:grid md:grid-cols-2 gap-8 max-w-5xl mx-auto
+                overflow-x-auto md:overflow-visible
+                px-4 md:px-0 pb-6 project-scroll">
 
-                        <div class="custom-card p-4 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
-                            <video class="rounded-lg mb-4 w-full h-48 object-cover border-2 border-black" autoplay muted loop>
-                                <source src="images/listendrift.mp4" type="video/mp4" />
-                            </video>
-                            <h3 class="font-heading text-xl mb-2">ListenDrift</h3>
-                            <p class="text-sm text-gray-600 mb-6 flex-grow">Voice-driven interaction platform.</p>
-                            <a href="https://listendrift.entrext.com/" target="_blank" class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
-                                View Project 🚀
-                            </a>
-                        </div>
+        <!-- Card -->
+        <div class="custom-card p-4 flex flex-col
+                    h-[320px] md:h-auto
+                    transition-transform duration-300
+                    hover:scale-[1.02] active:scale-[0.98]
+                    min-w-[80vw] md:min-w-0">
 
-                    </div>
-                </div>
+            <div class="w-full aspect-video mb-4 border-2 border-black rounded-lg overflow-hidden">
+                <video class="w-full h-full object-cover"
+                       autoplay muted loop playsinline>
+                    <source src="images/edit_flow.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <h3 class="font-heading text-xl mb-2">EditFlow</h3>
+
+            <p class="text-sm text-gray-600 mb-6 flex-grow">
+                Workflow tool for managing editing pipelines and deliveries.
+            </p>
+
+            <a href="https://editflow-ten.vercel.app/" target="_blank"
+               class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
+                View Project 🚀
+            </a>
+        </div>
+
+        <!-- Card -->
+        <div class="custom-card p-4 flex flex-col
+                    h-[320px] md:h-auto
+                    transition-transform duration-300
+                    hover:scale-[1.02] active:scale-[0.98]
+                    min-w-[80vw] md:min-w-0">
+
+            <div class="w-full aspect-video mb-4 border-2 border-black rounded-lg overflow-hidden">
+                <video class="w-full h-full object-cover"
+                       autoplay muted loop playsinline>
+                    <source src="images/listendrift.mp4" type="video/mp4">
+                </video>
+            </div>
+
+            <h3 class="font-heading text-xl mb-2">ListenDrift</h3>
+
+            <p class="text-sm text-gray-600 mb-6 flex-grow">
+                Voice-driven interaction platform.
+            </p>
+
+            <a href="https://listendrift.entrext.com/" target="_blank"
+               class="custom-btn text-center py-2 px-4 text-xs font-bold w-max">
+                View Project 🚀
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+                <!--  -->
 
                 <div class="mb-24">
                     <h2 class="text-4xl font-heading text-center mb-8">My Toolkit</h2>
@@ -345,49 +382,24 @@ Practicing frontend development, backend APIs, database design, and deployment t
         }
 
         async function fetchAIResponse(userQuery) {
-    try {
-        const response = await fetch("/api/chat", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: userQuery }),
-        });
+            try {
+                const response = await fetch("http://localhost:3000/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userQuery }),
+                });
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`HTTP ${response.status}: ${errorText}`);
-        }
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        let fullReply = "";
-
-        while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            
-            const chunk = decoder.decode(value);
-            const lines = chunk.split('\n');
-            
-            for (const line of lines) {
-                if (line.startsWith('data: ')) {
-                    const data = line.slice(6);
-                    if (data === '[DONE]') continue;
-                    try {
-                        const parsed = JSON.parse(data);
-                        fullReply += parsed.content || parsed.reply || '';
-                        // Update UI live with fullReply
-                        updateChatDisplay(fullReply);
-                    } catch (e) {}
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
+
+                const data = await response.json();
+                return data.reply || "No response from server.";
+            } catch (error) {
+                console.error("Frontend error:", error);
+                return "Server connection failed. Is the Node server running?";
             }
         }
-        return fullReply;
-    } catch (error) {
-        console.error("Frontend error:", error);
-        return "Connection failed.";
-    }
-}
-
             
         async function processInput(text) {
             addMessage(text, true);
@@ -424,17 +436,3 @@ Practicing frontend development, backend APIs, database design, and deployment t
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
